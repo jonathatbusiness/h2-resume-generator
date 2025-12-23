@@ -57,5 +57,5 @@ export function getTemplateById(id) {
 }
 
 export function getTemplatePreviewSrc(templateId, accent) {
-  return `/assets/${templateId}-${accent}.png`;
+  return `${import.meta.env.BASE_URL}assets/${templateId}-${accent}.png`;
 }

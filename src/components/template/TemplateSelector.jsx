@@ -75,33 +75,28 @@ export default function TemplateSelector() {
 
               <div className="choice-title">{t.title}</div>
               <div className="choice-desc">{t.description}</div>
+              {templateId === t.id && (t.accents?.length ?? 0) > 1 ? (
+                <div className="accent-row">
+                  {t.accents.map((c) => (
+                    <button
+                      key={c}
+                      type="button"
+                      className={`accent-dot accent-${c} ${
+                        accent === c ? "is-active" : ""
+                      }`}
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        actions.setAccent(c);
+                      }}
+                      title={c}
+                    />
+                  ))}
+                </div>
+              ) : null}
             </button>
           );
         })}
       </div>
-
-      <div className="divider" />
-
-      <div className="section-subtitle">
-        Escolha a cor de destaque do modelo
-      </div>
-      <div className="accent-row">
-        {accentOptions.map((c) => (
-          <button
-            key={c}
-            type="button"
-            className={`accent-dot accent-${c} ${
-              accent === c ? "is-active" : ""
-            }`}
-            onClick={() => actions.setAccent(c)}
-            title={c}
-          />
-        ))}
-      </div>
-
-      <p className="muted">
-        As cores de destaque alteram levemente o design original.
-      </p>
 
       <div className="actions-row">
         <button
