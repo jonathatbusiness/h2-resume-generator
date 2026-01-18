@@ -105,26 +105,16 @@ export const useCVStore = create((set, get) => {
       addLanguage: (name) => {
         const { data } = get();
         const exists = data.languages.some(
-          (l) => l.name.toLowerCase() === name.toLowerCase()
+          (l) => l.name.toLowerCase() === name.toLowerCase(),
         );
         if (exists) return;
 
-        const newLang = { id: makeId("lang"), name, level: "Basic" };
+        const newLang = { id: makeId("lang"), name };
+
         set((state) => ({
           data: {
             ...state.data,
             languages: [...state.data.languages, newLang],
-          },
-        }));
-      },
-
-      updateLanguage: (id, patch) => {
-        set((state) => ({
-          data: {
-            ...state.data,
-            languages: state.data.languages.map((l) =>
-              l.id === id ? { ...l, ...patch } : l
-            ),
           },
         }));
       },
@@ -190,9 +180,11 @@ export const useCVStore = create((set, get) => {
                 ? {
                     ...e,
                     ...patch,
-                    endDate: patch.isCurrent ? "" : patch.endDate ?? e.endDate,
+                    endDate: patch.isCurrent
+                      ? ""
+                      : (patch.endDate ?? e.endDate),
                   }
-                : e
+                : e,
             ),
           },
         }));

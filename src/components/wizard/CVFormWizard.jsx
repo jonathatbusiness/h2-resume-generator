@@ -8,7 +8,6 @@ import { FaImage } from "react-icons/fa";
 
 import {
   LANGUAGE_OPTIONS,
-  LANGUAGE_LEVELS,
   getSkillCatalogByVisaType,
   mapById,
 } from "../../utils/cvDictionaries";
@@ -232,7 +231,7 @@ export default function CVFormWizard() {
       <div className="divider" />
 
       <h3 className="section-subtitle">Idiomas</h3>
-      <p className="muted">Adicione idiomas e selecione o nível.</p>
+      <p className="muted">Adicione os idiomas.</p>
 
       <div className="row">
         {LANGUAGE_OPTIONS.map((lang) => (
@@ -257,19 +256,6 @@ export default function CVFormWizard() {
             <div key={l.id} className="list-row">
               <div className="list-main">
                 <div className="list-title">{l.name}</div>
-
-                <select
-                  value={l.level}
-                  onChange={(e) =>
-                    actions.updateLanguage(l.id, { level: e.target.value })
-                  }
-                >
-                  {LANGUAGE_LEVELS.map((lvl) => (
-                    <option key={lvl.id} value={lvl.value}>
-                      {lvl.label}
-                    </option>
-                  ))}
-                </select>
               </div>
 
               <button
